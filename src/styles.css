@@ -123,3 +123,54 @@ img.socialIcon {
   height: 30px;
   width: 30px;
 }
+
+/* Animated social icons */
+.socials {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.socials a {
+  display: inline-block;
+  will-change: transform, filter;
+}
+
+.socials a img.socialIcon,
+.socials a .social-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  padding: 6px;
+  background: linear-gradient(135deg, rgba(78,86,126,0.08), rgba(78,86,126,0.02));
+  transition: transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s, filter .28s;
+  object-fit: contain;
+}
+
+.socials a:hover img.socialIcon {
+  transform: translateY(-8px) scale(1.08) rotate(-6deg);
+  box-shadow: 0 12px 30px rgba(78,86,126,0.18);
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.12)) saturate(1.06);
+}
+
+/* Subtle continuous motion with a small stagger */
+.socials a img.socialIcon {
+  animation: float-rotate 4s ease-in-out infinite;
+}
+.socials a:nth-child(1) img.socialIcon { animation-delay: 0s; }
+.socials a:nth-child(2) img.socialIcon { animation-delay: 0.12s; }
+.socials a:nth-child(3) img.socialIcon { animation-delay: 0.24s; }
+.socials a:nth-child(4) img.socialIcon { animation-delay: 0.36s; }
+.socials a:nth-child(5) img.socialIcon { animation-delay: 0.48s; }
+
+@keyframes float-rotate {
+  0% { transform: translateY(0) rotate(0deg); }
+  20% { transform: translateY(-6px) rotate(-6deg); }
+  50% { transform: translateY(0) rotate(0deg); }
+  80% { transform: translateY(6px) rotate(6deg); }
+ 100% { transform: translateY(0) rotate(0deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .socials a img.socialIcon { animation: none; transition: none; transform: none; }
+}
